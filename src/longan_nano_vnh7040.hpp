@@ -112,6 +112,11 @@ namespace Longan_nano
 //! \n      2021-03-07
 //! \n  Added pin configuration inside enum Config
 //! \n  Moved INA_SEL0 from B5 to B11 to avoid collision with encoder CH1 pin
+//! \n      2021-03-20
+//! \n Github repository
+//! \n Add differential amplifier to VNH7040 SENSE pin
+//! \n Measure. 440mA motor -> 390mV VSense. Equivalent RSense = 888mOhm
+//! \n 
 /************************************************************************************/
 
 class VNH7040

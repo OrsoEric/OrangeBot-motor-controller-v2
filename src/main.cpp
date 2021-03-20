@@ -15,6 +15,8 @@
 **  Display the encoder count on screen
 **  Repository:
 **  https://github.com/OrsoEric/OrangeBot-motor-controller-v2
+**      2021-03-20
+**  Remove uC temperature. Add ADC CH0, motor Vsense
 ****************************************************************************/
 
 /****************************************************************************
@@ -287,26 +289,28 @@ int main( void )
             g_screen.print( 5, 0, "ENC CNT:" );
             g_screen.print( 5, 19, tmp );
 
-	
             //----------------------------------------------------------------
             //  ADC Acquisition
             //---------------------------------------------------------------- 
 	
             //Fetch and process temperature in celsius m[°c] 
-            int temperature = (1430000 - ADC_IDATA0(ADC0)*(3300000/4096)) / 4300 + 25000;
+            //int temperature = (1430000 - ADC_IDATA0(ADC0)*(3300000/4096)) / 4300 + 25000;
+            int vnh7040_sense = ADC_IDATA0(ADC0) *3300 /4096;
+            //Convert from VNH7040 sense voltage to motor current
+            int vnh7040_current = vnh7040_sense *888/1000;
             //Fetch and process the reference in volts m[V]
             int vref_value = ADC_IDATA1(ADC0) *3300 /4096;
             adc_software_trigger_enable(ADC0, ADC_INSERTED_CHANNEL);
             //Compensate for the 'm' suffix, which is just used to have more digits
 			g_screen.set_format( 8, Longan_nano::Screen::Format_align::ADJ_RIGHT, Longan_nano::Screen::Format_format::ENG, -3 );
             //Show temperature
-			g_screen.print( 6, 0, "Temp:" );
-            g_screen.print( 6, 18, temperature );
-			g_screen.print( 6, 19, 'c' );
+			g_screen.print( 6, 0, "VNH7040 Vs:" );
+            g_screen.print( 6, 18, vnh7040_sense );
+			g_screen.print( 6, 19, 'V' );
             //Show voltage
-            g_screen.print( 7, 0, "Vref:" );
-            g_screen.print( 7, 18, vref_value );
-            g_screen.print( 7, 19, 'V' );
+            g_screen.print( 7, 0, "VNH7040 IM:" );
+            g_screen.print( 7, 18, vnh7040_current );
+            g_screen.print( 7, 19, 'A' );
 
             //Task is done running
             g_scheduler.done( task_index );
@@ -431,6 +435,12 @@ bool init_enc( void )
 
 bool init_adc_temp(void)
 {
+
+    //Clock GPIO
+    rcu_periph_clock_enable(RCU_GPIOA);
+    //Configure PA0 as analog input
+    gpio_init( GPIOA, GPIO_MODE_AIN, GPIO_OSPEED_50MHZ, GPIO_PIN_0 );
+    //Clock the ADC
     rcu_periph_clock_enable(RCU_ADC0);
     /* config ADC clock */
     rcu_adc_clock_config(RCU_CKADC_CKAPB2_DIV4);
@@ -447,8 +457,8 @@ bool init_adc_temp(void)
     
     /* ADC channel length config */
     adc_channel_length_config(ADC0, ADC_INSERTED_CHANNEL, 2);
-    /* ADC temperature sensor channel config */
-    adc_inserted_channel_config(ADC0, 0, ADC_CHANNEL_16, ADC_SAMPLETIME_239POINT5);
+    /* ADC Channel 0, connected to VNH7040 VSense */
+    adc_inserted_channel_config(ADC0, 0, ADC_CHANNEL_0, ADC_SAMPLETIME_239POINT5);
     /* ADC internal reference voltage channel config */
     adc_inserted_channel_config(ADC0, 1, ADC_CHANNEL_17, ADC_SAMPLETIME_239POINT5);
 
