@@ -13,6 +13,8 @@
 **  Activate Timer 2 in quadrature mode
 **  Count a quadrature encoder connected to PB4 and PB5
 **  Display the encoder count on screen
+**  Repository:
+**  https://github.com/OrsoEric/OrangeBot-motor-controller-v2
 ****************************************************************************/
 
 /****************************************************************************
