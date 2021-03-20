@@ -4,6 +4,9 @@ Motor controller for OrangeBot Robot
 -GD32VF103 Microcontroller  
 -IG32E-05K Motor  
 
+# Blog Entry  
+https://orangebotpiwars2021.blogspot.com/2021/03/2021-03-20-orangebot-motor-controller.html
+
 # Schematics  
 ![Schematics](https://raw.githubusercontent.com/OrsoEric/OrangeBot-motor-controller-v2/main/Media/2021-03-20%20Schematics.jpg)  
 
