@@ -38,6 +38,9 @@
 //Driver for the VNH7040 H-Bridge
 #include "longan_nano_vnh7040.hpp"
 
+#include "pid_s32.hpp"
+#include "pid_s16.h"
+
 /****************************************************************************
 **	NAMESPACES
 ****************************************************************************/
@@ -71,7 +74,7 @@ typedef enum _Config
     //Microseconds between paint of colored square
     PAINT_TASK_US       = 300000,
 
-    VNH7040_TASK_US     = 10000,
+    VNH7040_TASK_US     = 1000,
 
     SCREEN_TASK_INDEX   = 0,
     HMI_TASK_INDEX      = 1,
@@ -116,6 +119,13 @@ std::uniform_int_distribution<uint8_t> g_rng_color( 0, Longan_nano::Screen::Conf
 Scheduler g_scheduler = { 0 };
 //VNH7040 Motor controller
 Longan_nano::VNH7040 g_vnh7040;
+//PID controller
+Orangebot::Pid_s32 gcl_pid_controller;
+int_fast32_t gs32_vnh7040_command;
+int_fast32_t gs32_encoder_feedback;
+bool gu1_pid_error = false;
+
+Orangebot::Pid_s16 gcl_pid16_controller;
 
 /****************************************************************************
 **	FUNCTIONS
@@ -163,6 +173,22 @@ int main( void )
 	init_adc_temp();
     //Initialize VNH7040
     f_ret = g_vnh7040.init();
+    //PID Initialization
+   	gcl_pid16_controller.gain_kp() = +12800;
+	gcl_pid16_controller.gain_ki() = +100;
+	gcl_pid16_controller.gain_kd() = +0;
+	gcl_pid16_controller.set_limit_cmd( -10000, +10000 );
+
+
+    /*
+    gcl_pid_controller.set_fixed_point_position( 4 );
+    gcl_pid_controller.set_pid_gain( 100.0, -10.0, 0.0 );
+    gcl_pid_controller.set_command_limit( 0.1, 1000.0 );
+    gcl_pid_controller.set_saturation_timeout(100);
+    */
+    //Error state
+    gu1_pid_error = !gcl_pid_controller.is_ready();
+    
 
     //----------------------------------------------------------------
     //	ERROR HANDLER
@@ -243,6 +269,7 @@ int main( void )
             //  CPU Load
             //----------------------------------------------------------------
     
+            /*
             g_screen.print( 1, 0, "CPU Load" );
             //Use top of 100000 to get enough decimals. To print in the right format witn 100000->100.0% ENG exponent is -3 (TOP 100000 /10^ENG_EXP -3 = 100)
             g_screen.set_format( 8, Longan_nano::Screen::Format_align::ADJ_RIGHT, Longan_nano::Screen::Format_format::ENG, -3 );
@@ -250,6 +277,7 @@ int main( void )
             int cpu_load = g_scheduler.get_cpu_load( 100000 );
             g_screen.print( 1, 18, cpu_load );
             g_screen.print( 1, 19, '%' );
+            */
             
             //----------------------------------------------------------------
             //  Uptime and CPU Time
@@ -258,15 +286,31 @@ int main( void )
             //Since the time is measured in millisecond exponent is 10^-3
             g_screen.set_format( 8, Longan_nano::Screen::Format_align::ADJ_RIGHT, Longan_nano::Screen::Format_format::ENG, -3 );
             
+            if (gu1_pid_error == true)
+            {
+                g_screen.print( 2, 0, "PID ERROR" );
+            }
+            else
+            {
+                g_screen.print( 2, 0, "PID OK" );
+            }
+            /*
             g_screen.print( 2, 0, "Uptime" );
             tmp = g_scheduler.get_uptime( Longan_nano::Chrono::Unit::milliseconds );
             g_screen.print( 2, 18, tmp );
             g_screen.print( 2, 19, 's' );
+            */
             
+            /*
             g_screen.print( 3, 0, "CPU Time" );
             tmp = g_scheduler.get_cpu_time( Longan_nano::Chrono::Unit::milliseconds );
             g_screen.print( 3, 18, tmp );
             g_screen.print( 3, 19, 's' );
+            */
+
+            g_screen.set_format( 8, Longan_nano::Screen::Format_align::ADJ_RIGHT, Longan_nano::Screen::Format_format::NUM );
+            g_screen.print( 3, 0, "VNH7040" );
+            g_screen.print( 3, 19, gs32_vnh7040_command );
 
             //----------------------------------------------------------------
             //  Execution time of fast task
@@ -284,7 +328,7 @@ int main( void )
             //---------------------------------------------------------------- 
             
             //Get the count of the timer
-            tmp = TIMER_CNT( TIMER2 );
+            tmp = gs32_encoder_feedback;
             g_screen.set_format( 8, Longan_nano::Screen::Format_align::ADJ_RIGHT, Longan_nano::Screen::Format_format::NUM );
             g_screen.print( 5, 0, "ENC CNT:" );
             g_screen.print( 5, 19, tmp );
@@ -362,13 +406,30 @@ int main( void )
         //Set task index
         task_index = Config::VNH7040_TASK_INDEX;
         //if: task is scheduled for execution
-        if (g_scheduler.is_task_scheduled( task_index )  == true)
+        if (g_scheduler.is_task_scheduled( task_index ) == true)
         {
             //Task is running
             g_scheduler.run( task_index );
             
-            test_vnh7040();
-
+            //Feed a PWMramp
+            //test_vnh7040();
+            
+            gs32_encoder_feedback = TIMER_CNT( TIMER2 );
+            gs32_vnh7040_command = gcl_pid16_controller.exe( int32_t(32000), gs32_encoder_feedback  );
+            gu1_pid_error = false;
+            //gu1_pid_error = gcl_pid_controller.exe( 1000, gs32_encoder_feedback, gs32_vnh7040_command );
+            //gs32_vnh7040_command = 100;
+            
+            if (gu1_pid_error == true)
+            {
+                gs32_vnh7040_command = 0;
+                g_vnh7040.set_speed( 0 );
+            }
+            else
+            {
+                g_vnh7040.set_speed( gs32_vnh7040_command );
+            }
+            
             //Task is done running
             g_scheduler.done( task_index );
         }
