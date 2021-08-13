@@ -1,0 +1,66 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "d:/Data/Project/Project OrangeBot/Project DCMC DC Motor Controller/DCMCv14 GD32VF103 VNH7040/OrangeBot-motor-controller-v2/include",
+                "d:/Data/Project/Project OrangeBot/Project DCMC DC Motor Controller/DCMCv14 GD32VF103 VNH7040/OrangeBot-motor-controller-v2/src",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/deprecated-avr-comp",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/GD32VF103_standard_peripheral",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/GD32VF103_standard_peripheral/Include",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/GD32VF103_usbfs_driver",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/GD32VF103_usbfs_driver/Include",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/RISCV/drivers",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/RISCV/env_Eclipse",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/RISCV/stubs",
+                "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/variants/sipeed-longan-nano",
+                "C:/Users/FatherOfMachines/.platformio/packages/tool-unity",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "d:/Data/Project/Project OrangeBot/Project DCMC DC Motor Controller/DCMCv14 GD32VF103 VNH7040/OrangeBot-motor-controller-v2/include",
+                    "d:/Data/Project/Project OrangeBot/Project DCMC DC Motor Controller/DCMCv14 GD32VF103 VNH7040/OrangeBot-motor-controller-v2/src",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/deprecated-avr-comp",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/GD32VF103_standard_peripheral",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/GD32VF103_standard_peripheral/Include",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/GD32VF103_usbfs_driver",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/GD32VF103_usbfs_driver/Include",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/RISCV/drivers",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/RISCV/env_Eclipse",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/cores/arduino/GD32VF103_Firmware_Library/RISCV/stubs",
+                    "C:/Users/FatherOfMachines/.platformio/packages/framework-arduino-gd32v/variants/sipeed-longan-nano",
+                    "C:/Users/FatherOfMachines/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=50101",
+                "USE_STDPERIPH_DRIVER",
+                "HXTAL_VALUE=8000000U",
+                "ARDUINO=10805",
+                "ARDUINO_VARIANT=\"sipeed-longan-nano\"",
+                "ARDUINO_BOARD=\"BOARD_SIPEED_LONGAN_NANO\"",
+                ""
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "compilerPath": "C:/Users/FatherOfMachines/.platformio/packages/toolchain-gd32v/bin/riscv-nuclei-elf-gcc.exe",
+            "compilerArgs": [
+                "-march=rv32imac",
+                "-mabi=ilp32",
+                "-mcmodel=medlow",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
