@@ -37,8 +37,7 @@
 #include "longan_nano_screen.hpp"
 //Driver for the VNH7040 H-Bridge
 #include "longan_nano_vnh7040.hpp"
-
-#include "pid_s32.hpp"
+//Old 16b PID controller
 #include "pid_s16.h"
 
 /****************************************************************************
@@ -120,11 +119,11 @@ Scheduler g_scheduler = { 0 };
 //VNH7040 Motor controller
 Longan_nano::VNH7040 g_vnh7040;
 //PID controller
-Orangebot::Pid_s32 gcl_pid_controller;
 int_fast32_t gs32_vnh7040_command;
 int_fast32_t gs32_encoder_feedback;
 bool gu1_pid_error = false;
 
+//Debug: use old controller for sanity check
 Orangebot::Pid_s16 gcl_pid16_controller;
 
 /****************************************************************************
@@ -174,21 +173,15 @@ int main( void )
     //Initialize VNH7040
     f_ret = g_vnh7040.init();
     //PID Initialization
+    
    	gcl_pid16_controller.gain_kp() = +12800;
 	gcl_pid16_controller.gain_ki() = +100;
 	gcl_pid16_controller.gain_kd() = +0;
 	gcl_pid16_controller.set_limit_cmd( -10000, +10000 );
-
-
-    /*
-    gcl_pid_controller.set_fixed_point_position( 4 );
-    gcl_pid_controller.set_pid_gain( 100.0, -10.0, 0.0 );
-    gcl_pid_controller.set_command_limit( 0.1, 1000.0 );
-    gcl_pid_controller.set_saturation_timeout(100);
-    */
-    //Error state
-    gu1_pid_error = !gcl_pid_controller.is_ready();
     
+    //Error state
+    //gu1_pid_error = !gcl_pid_controller.is_ready();
+    gu1_pid_error = false;
 
     //----------------------------------------------------------------
     //	ERROR HANDLER
@@ -414,12 +407,11 @@ int main( void )
             //Feed a PWMramp
             //test_vnh7040();
             
+            //PID16 controller
             gs32_encoder_feedback = TIMER_CNT( TIMER2 );
             gs32_vnh7040_command = gcl_pid16_controller.exe( int32_t(32000), gs32_encoder_feedback  );
-            gu1_pid_error = false;
-            //gu1_pid_error = gcl_pid_controller.exe( 1000, gs32_encoder_feedback, gs32_vnh7040_command );
-            //gs32_vnh7040_command = 100;
-            
+            //true=PID is in protection mode
+            gu1_pid_error = gcl_pid16_controller.get_pid_status();
             if (gu1_pid_error == true)
             {
                 gs32_vnh7040_command = 0;
