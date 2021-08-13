@@ -8,7 +8,7 @@ Motor controller for OrangeBot Robot
 https://orangebotpiwars2021.blogspot.com/2021/03/2021-03-20-orangebot-motor-controller.html
 
 # Schematics  
-![Schematics](https://raw.githubusercontent.com/OrsoEric/OrangeBot-motor-controller-v2/main/Media/2021-03-20%20Schematics.jpg)  
+![Schematics](https://raw.githubusercontent.com/OrsoEric/OrangeBot-motor-controller-v2/main/Breadboard%20Schematics/2021-03-20%20Schematics.jpg)  
 
 # Test bench  
-![Test bench](https://raw.githubusercontent.com/OrsoEric/OrangeBot-motor-controller-v2/main/Media/2021-03-20%20Test%20Bed.jpg)  
+![Test bench](https://raw.githubusercontent.com/OrsoEric/OrangeBot-motor-controller-v2/main/Breadboard%20Schematics/2021-03-20%20Test%20Bed.jpg)  
