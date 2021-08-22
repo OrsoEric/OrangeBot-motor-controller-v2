@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="2.54" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="1.27" altunitdist="mm" altunit="mm"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="yes" active="yes"/>
@@ -223,8 +223,8 @@ W=1.2mm&lt;br&gt;
 PAD=1.3x1.6mm&lt;br&gt;</description>
 <smd name="-" x="-0.95" y="0" dx="1.3" dy="1.6" layer="1"/>
 <smd name="+" x="0.95" y="0" dx="1.3" dy="1.6" layer="1"/>
-<text x="-1.27" y="1.27" size="1.27" layer="25">&gt;NAME</text>
-<text x="-1.27" y="-2.54" size="1.27" layer="27">&gt;VALUE</text>
+<text x="-1.27" y="1.27" size="0.635" layer="25" font="vector" ratio="20">&gt;NAME</text>
+<text x="-1.27" y="-2.54" size="0.635" layer="27" font="vector" ratio="20">&gt;VALUE</text>
 <rectangle x1="-0.1999" y1="-0.5999" x2="0.1999" y2="0.5999" layer="35"/>
 <wire x1="-1" y1="0.6" x2="1" y2="0.6" width="0.127" layer="21"/>
 <wire x1="1" y1="0.6" x2="1" y2="-0.6" width="0.127" layer="21"/>
@@ -310,6 +310,63 @@ PAD=2.0x5.0mm&lt;br&gt;</description>
 <wire x1="2.54" y1="-1.27" x2="-2.54" y2="-1.27" width="0.01" layer="40"/>
 <text x="-2.8575" y="-0.3175" size="0.635" layer="21" font="vector" ratio="15">+</text>
 </package>
+<package name="SMD-M2012-X4">
+<description>&lt;b&gt;RAC164&lt;/b&gt;&lt;p&gt;
+This is a 4X resistor network.
+The external dimension is a package 1206&lt;br&gt;
+3.2mm*1.6mm&lt;p&gt;
+pad are 1.0mmx0.4mm.&lt;br&gt;
+pitch is 0.8mm&lt;br&gt;
+&lt;p&gt;
+&lt;i&gt;Update&lt;/i&gt;&lt;br&gt;
+2021-07-24: Pad are too short. Increased Length&lt;br&gt;</description>
+<smd name="3B" x="0.4" y="0.8" dx="1" dy="0.4" layer="1" rot="R90"/>
+<smd name="3A" x="0.4" y="-0.8" dx="1" dy="0.4" layer="1" rot="R90"/>
+<smd name="2A" x="-0.4" y="-0.8" dx="1" dy="0.4" layer="1" rot="R90"/>
+<smd name="2B" x="-0.4" y="0.8" dx="1" dy="0.4" layer="1" rot="R90"/>
+<smd name="1B" x="-1.2" y="0.8" dx="1" dy="0.4" layer="1" rot="R90"/>
+<smd name="4B" x="1.2" y="0.8" dx="1" dy="0.4" layer="1" rot="R90"/>
+<smd name="1A" x="-1.2" y="-0.8" dx="1" dy="0.4" layer="1" rot="R90"/>
+<smd name="4A" x="1.2" y="-0.8" dx="1" dy="0.4" layer="1" rot="R90"/>
+<wire x1="-1.7" y1="0.9" x2="1.7" y2="0.9" width="0.127" layer="21"/>
+<wire x1="1.7" y1="0.9" x2="1.7" y2="-0.9" width="0.127" layer="21"/>
+<wire x1="1.7" y1="-0.9" x2="-1.7" y2="-0.9" width="0.127" layer="21"/>
+<wire x1="-1.7" y1="-0.9" x2="-1.7" y2="0.9" width="0.127" layer="21"/>
+<text x="-1.905" y="-1.27" size="0.635" layer="25" font="vector" ratio="15" rot="R90">&gt;name</text>
+<text x="2.54" y="-1.27" size="0.635" layer="27" font="vector" ratio="15" rot="R90">&gt;value</text>
+<wire x1="-1.5875" y1="1.5875" x2="1.5875" y2="1.5875" width="0.01" layer="39"/>
+<wire x1="1.5875" y1="1.5875" x2="1.905" y2="1.27" width="0.01" layer="39"/>
+<wire x1="1.905" y1="1.27" x2="1.905" y2="-1.27" width="0.01" layer="39"/>
+<wire x1="1.905" y1="-1.27" x2="1.5875" y2="-1.5875" width="0.01" layer="39"/>
+<wire x1="1.5875" y1="-1.5875" x2="-1.5875" y2="-1.5875" width="0.01" layer="39"/>
+<wire x1="-1.5875" y1="-1.5875" x2="-1.905" y2="-1.27" width="0.01" layer="39"/>
+<wire x1="-1.905" y1="-1.27" x2="-1.905" y2="1.27" width="0.01" layer="39"/>
+<wire x1="-1.905" y1="1.27" x2="-1.5875" y2="1.5875" width="0.01" layer="39"/>
+<wire x1="-1.74625" y1="-1.27" x2="-1.74625" y2="1.27" width="0.15" layer="51"/>
+<wire x1="-1.42875" y1="1.5875" x2="1.42875" y2="1.5875" width="0.15" layer="51"/>
+<wire x1="1.74625" y1="1.27" x2="1.74625" y2="-1.27" width="0.15" layer="51"/>
+<wire x1="1.42875" y1="-1.5875" x2="-1.42875" y2="-1.5875" width="0.15" layer="51"/>
+<wire x1="-1.74625" y1="1.27" x2="-1.42875" y2="1.5875" width="0.15" layer="51"/>
+<wire x1="1.42875" y1="1.5875" x2="1.74625" y2="1.27" width="0.15" layer="51"/>
+<wire x1="1.74625" y1="-1.27" x2="1.42875" y2="-1.5875" width="0.15" layer="51"/>
+<wire x1="-1.74625" y1="-1.27" x2="-1.42875" y2="-1.5875" width="0.15" layer="51"/>
+</package>
+<package name="TH-BARREL-3M5-8M0">
+<description>&lt;b&gt;Through Hole Barrel Footprint&lt;/b&gt;&lt;p&gt;
+-2x2.54 mm&lt;br&gt;
+-diameter 6 mm&lt;br&gt;</description>
+<circle x="0" y="0" radius="4" width="0.15" layer="21"/>
+<pad name="-" x="1.75" y="0" drill="1" shape="square"/>
+<pad name="+" x="-1.75" y="0" drill="1" shape="octagon"/>
+<text x="-3.175" y="3.81" size="0.635" layer="25" font="vector" ratio="15">&gt;name</text>
+<text x="-3.175" y="-4.445" size="0.635" layer="27" font="vector" ratio="15">&gt;value</text>
+<circle x="0" y="0" radius="4.5" width="0.01" layer="39"/>
+<wire x1="-3.175" y1="-1.27" x2="-3.175" y2="1.27" width="0.01" layer="40"/>
+<wire x1="-3.175" y1="1.27" x2="3.175" y2="1.27" width="0.01" layer="40"/>
+<wire x1="3.175" y1="1.27" x2="3.175" y2="-1.27" width="0.01" layer="40"/>
+<wire x1="3.175" y1="-1.27" x2="-3.175" y2="-1.27" width="0.01" layer="40"/>
+<text x="-3.4925" y="-0.3175" size="0.635" layer="21" font="vector" ratio="15">+</text>
+</package>
 </packages>
 <symbols>
 <symbol name="LED">
@@ -348,8 +405,8 @@ PAD=2.0x5.0mm&lt;br&gt;</description>
 <wire x1="2.54" y1="2.54" x2="3.81" y2="2.54" width="0.254" layer="94"/>
 <wire x1="-2.54" y1="-2.54" x2="-3.81" y2="-2.54" width="0.254" layer="94"/>
 <wire x1="2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
-<pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
-<pin name="2" x="5.08" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+<pin name="1" x="-2.54" y="0" visible="off" length="point" direction="pas"/>
+<pin name="2" x="2.54" y="0" visible="off" length="point" direction="pas" rot="R180"/>
 <text x="-2.54" y="2.54" size="1.27" layer="95">&gt;NAME</text>
 <text x="-2.54" y="-5.08" size="1.27" layer="96">&gt;VALUE</text>
 </symbol>
@@ -410,7 +467,8 @@ Symbol</description>
 <wire x1="2.54" y1="0" x2="0.635" y2="0" width="0.15" layer="94"/>
 </symbol>
 <symbol name="RAC4">
-<description>Resistor Array of four elements</description>
+<description>Resistor Array of four elements&lt;p&gt;
+2021-08-22: add swap level&lt;br&gt;</description>
 <wire x1="-7.62" y1="1.905" x2="-6.35" y2="1.5875" width="0.254" layer="94"/>
 <wire x1="-6.35" y1="1.5875" x2="-8.89" y2="0.9525" width="0.254" layer="94"/>
 <wire x1="-8.89" y1="0.9525" x2="-6.35" y2="0.3175" width="0.254" layer="94"/>
@@ -418,8 +476,8 @@ Symbol</description>
 <wire x1="-8.89" y1="-0.3175" x2="-6.35" y2="-0.9525" width="0.254" layer="94"/>
 <wire x1="-6.35" y1="-0.9525" x2="-8.89" y2="-1.5875" width="0.254" layer="94"/>
 <wire x1="-8.89" y1="-1.5875" x2="-7.62" y2="-1.905" width="0.254" layer="94"/>
-<pin name="1B" x="-7.62" y="2.54" visible="off" length="point" rot="R270"/>
-<pin name="1A" x="-7.62" y="-2.54" visible="off" length="point" rot="R270"/>
+<pin name="1B" x="-7.62" y="2.54" visible="off" length="point" swaplevel="1" rot="R270"/>
+<pin name="1A" x="-7.62" y="-2.54" visible="off" length="point" swaplevel="1" rot="R270"/>
 <wire x1="-5.08" y1="1.905" x2="-3.81" y2="1.5875" width="0.254" layer="94"/>
 <wire x1="-3.81" y1="1.5875" x2="-6.35" y2="0.9525" width="0.254" layer="94"/>
 <wire x1="-6.35" y1="0.9525" x2="-3.81" y2="0.3175" width="0.254" layer="94"/>
@@ -427,8 +485,8 @@ Symbol</description>
 <wire x1="-6.35" y1="-0.3175" x2="-3.81" y2="-0.9525" width="0.254" layer="94"/>
 <wire x1="-3.81" y1="-0.9525" x2="-6.35" y2="-1.5875" width="0.254" layer="94"/>
 <wire x1="-6.35" y1="-1.5875" x2="-5.08" y2="-1.905" width="0.254" layer="94"/>
-<pin name="2B" x="-5.08" y="2.54" visible="off" length="point" rot="R270"/>
-<pin name="2A" x="-5.08" y="-2.54" visible="off" length="point" rot="R270"/>
+<pin name="2B" x="-5.08" y="2.54" visible="off" length="point" swaplevel="1" rot="R270"/>
+<pin name="2A" x="-5.08" y="-2.54" visible="off" length="point" swaplevel="1" rot="R270"/>
 <wire x1="-2.54" y1="1.905" x2="-1.27" y2="1.5875" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="1.5875" x2="-3.81" y2="0.9525" width="0.254" layer="94"/>
 <wire x1="-3.81" y1="0.9525" x2="-1.27" y2="0.3175" width="0.254" layer="94"/>
@@ -436,8 +494,8 @@ Symbol</description>
 <wire x1="-3.81" y1="-0.3175" x2="-1.27" y2="-0.9525" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="-0.9525" x2="-3.81" y2="-1.5875" width="0.254" layer="94"/>
 <wire x1="-3.81" y1="-1.5875" x2="-2.54" y2="-1.905" width="0.254" layer="94"/>
-<pin name="3B" x="-2.54" y="2.54" visible="off" length="point" rot="R270"/>
-<pin name="3A" x="-2.54" y="-2.54" visible="off" length="point" rot="R270"/>
+<pin name="3B" x="-2.54" y="2.54" visible="off" length="point" swaplevel="1" rot="R270"/>
+<pin name="3A" x="-2.54" y="-2.54" visible="off" length="point" swaplevel="1" rot="R270"/>
 <wire x1="0" y1="1.905" x2="1.27" y2="1.5875" width="0.254" layer="94"/>
 <wire x1="1.27" y1="1.5875" x2="-1.27" y2="0.9525" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="0.9525" x2="1.27" y2="0.3175" width="0.254" layer="94"/>
@@ -445,8 +503,8 @@ Symbol</description>
 <wire x1="-1.27" y1="-0.3175" x2="1.27" y2="-0.9525" width="0.254" layer="94"/>
 <wire x1="1.27" y1="-0.9525" x2="-1.27" y2="-1.5875" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="-1.5875" x2="0" y2="-1.905" width="0.254" layer="94"/>
-<pin name="4B" x="0" y="2.54" visible="off" length="point" rot="R270"/>
-<pin name="4A" x="0" y="-2.54" visible="off" length="point" rot="R270"/>
+<pin name="4B" x="0" y="2.54" visible="off" length="point" swaplevel="1" rot="R270"/>
+<pin name="4A" x="0" y="-2.54" visible="off" length="point" swaplevel="1" rot="R270"/>
 <text x="-10.16" y="-2.54" size="1.27" layer="95" rot="R90">&gt;name</text>
 <text x="2.54" y="-2.54" size="1.27" layer="96" rot="R90">&gt;value</text>
 <wire x1="-8.89" y1="2.54" x2="1.27" y2="2.54" width="0.254" layer="97"/>
@@ -545,6 +603,15 @@ Standard Capacitor (non polarized)</description>
 <technology name=""/>
 </technologies>
 </device>
+<device name="-TH3.5-8.0" package="TH-BARREL-3M5-8M0">
+<connects>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
 </devices>
 </deviceset>
 <deviceset name="LED">
@@ -568,6 +635,45 @@ Standard Capacitor (non polarized)</description>
 <description>&lt;b&gt;Inductor&lt;/b&gt;&lt;p&gt;</description>
 <gates>
 <gate name="G$1" symbol="L" x="0" y="0"/>
+</gates>
+<devices>
+<device name="-M2012" package="SMD-M2012">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="RX4">
+<description>&lt;b&gt;Four Resistor&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="RAC4" x="0" y="0"/>
+</gates>
+<devices>
+<device name="-M2012-X4" package="SMD-M2012-X4">
+<connects>
+<connect gate="G$1" pin="1A" pad="1A"/>
+<connect gate="G$1" pin="1B" pad="1B"/>
+<connect gate="G$1" pin="2A" pad="2A"/>
+<connect gate="G$1" pin="2B" pad="2B"/>
+<connect gate="G$1" pin="3A" pad="3A"/>
+<connect gate="G$1" pin="3B" pad="3B"/>
+<connect gate="G$1" pin="4A" pad="4A"/>
+<connect gate="G$1" pin="4B" pad="4B"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="PTC">
+<gates>
+<gate name="G$1" symbol="PTC" x="0" y="0"/>
 </gates>
 <devices>
 <device name="-M2012" package="SMD-M2012">
